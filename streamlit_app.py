@@ -109,7 +109,7 @@ def predict_sales(df, periods, interval_code):
 
 # Configuración de Streamlit
 st.set_page_config(page_title="Predicción de Ventas", layout="centered")
-st.title("\ud83d\udcca Predicción de Ventas por Producto")
+st.title("📊 Predicción de Ventas por Producto")
 st.write("Seleccione un producto para analizar las ventas y generar predicciones.")
 
 # Obtener la lista de productos
@@ -137,7 +137,7 @@ if products:
         df_resampled = preprocess_data(df, interval=interval_code)
 
         if not df_resampled.empty:
-            st.subheader(f"\ud83d\udcc8 Datos históricos de ventas ({selected_product_name})")
+            st.subheader(f"📈 Datos históricos de ventas ({selected_product_name})")
             fig = px.line(df_resampled, x=df_resampled.index, y=df_resampled, 
                           labels={'x': 'Fecha', 'y': 'Ventas'},
                           title=f"Ventas agrupadas por {interval.lower()}")
@@ -145,13 +145,13 @@ if products:
             st.plotly_chart(fig, use_container_width=True)
 
             # Mostrar tabla de datos históricos
-            st.subheader("\ud83d\udcca Tabla de Datos Históricos")
+            st.subheader("📊 Tabla de Datos Históricos")
             st.dataframe(df_resampled)
 
             # Predicción de ventas
             forecast_df = predict_sales(df_resampled, periods, interval_code)
             if not forecast_df.empty:
-                st.subheader(f"\ud83d\udd2e Predicción de ventas ({selected_product_name})")
+                st.subheader(f"🔮 Predicción de ventas ({selected_product_name})")
                 fig_forecast = go.Figure()
                 fig_forecast.add_trace(go.Scatter(x=df_resampled.index, y=df_resampled, 
                                                   mode='lines', name='Histórico', line=dict(color='blue')))
@@ -163,12 +163,12 @@ if products:
                 st.plotly_chart(fig_forecast, use_container_width=True)
 
                 # Mostrar tabla de predicciones (solo Fecha y Predicción)
-                st.subheader("\ud83d\udcca Tabla de Predicciones")
+                st.subheader("📊 Tabla de Predicciones")
                 forecast_df = forecast_df[['Fecha', 'Predicción']]  # Solo columnas necesarias
                 st.dataframe(forecast_df)
         else:
-            st.warning("\u26a0\ufe0f No se pudo procesar los datos. Verifique que la tabla contiene información válida.")
+            st.warning("⚠️ No se pudo procesar los datos. Verifique que la tabla contiene información válida.")
     else:
-        st.warning("\u26a0\ufe0f No se encontraron datos para el producto seleccionado.")
+        st.warning("⚠️ No se encontraron datos para el producto seleccionado.")
 else:
-    st.warning("\u26a0\ufe0f No se pudo obtener la lista de productos desde la base de datos.")
+    st.warning("⚠️ No se pudo obtener la lista de productos desde la base de datos.")
