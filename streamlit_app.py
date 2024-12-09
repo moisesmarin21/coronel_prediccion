@@ -10,10 +10,10 @@ def get_data(product=None):
     try:
         # Conexión a la base de datos MySQL
         conexion = mysql.connector.connect(
-            host="127.0.0.1",  # Host
+            host="/coronel.firetensor.com",  # Host
             user="root",       # Usuario
             password="",       # Contraseña
-            database="coronel" # Base de datos
+            database="firetens_coronel" # Base de datos
         )
         cursor = conexion.cursor(dictionary=True)
 
