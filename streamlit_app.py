@@ -11,9 +11,9 @@ def get_data(product=None):
         # Conexión a la base de datos MySQL
         conexion = mysql.connector.connect(
             DB_USER=firetens_coronel,
-            DB_PASSWORD=nCT,Wsvm5GMSC114Z%&O,
-            DB_HOST=50.116.27.100,
-            DB_PORT=3306,
+            DB_PASSWORD="nCT,Wsvm5GMSC114Z%&O",
+            DB_HOST="50.116.27.100",
+            DB_PORT="3306",
             DB_NAME=firetens_coronel
         )
         cursor = conexion.cursor(dictionary=True)
